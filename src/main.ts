@@ -1,114 +1,148 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Plugin entry point.
+//
+// Thin bootstrap: registers the command/context-menu entry, owns the loaded
+// settings object, and hands off to PDFExportModal (export-modal.ts) and
+// PDFExportSettingTab (settings-tab.ts) for everything UI-related.
+// ─────────────────────────────────────────────────────────────────────────────
+
+import { Menu, Plugin, TFile } from "obsidian";
 import {
-	Editor,
-	MarkdownView,
-	MarkdownFileInfo,
-	Modal,
-	Notice,
-	Plugin,
-} from 'obsidian';
-import {
-	DEFAULT_SETTINGS,
-	KnotworkPdfExportPluginSettings,
-	SampleSettingTab,
-} from './settings-tab';
+  DocStyle, PDFExportSettings, PRESETS, DEFAULT_SETTINGS, extractDocStyle, PRESET_COLOR_KEYS,
+} from "./settings";
+import { PDFExportModal } from "./export-modal";
+import { PDFExportSettingTab } from "./settings-tab";
+import { warmUpMathJax } from "./markdown";
 
-// Remember to rename these classes and interfaces!
+export default class MarkdownPDFPlugin extends Plugin {
+  declare settings: PDFExportSettings;
+  activeModal: PDFExportModal | null = null;
+  presetSnapshots: Record<string, DocStyle> = {};
 
-export default class KnotworkPdfExportPlugin extends Plugin {
-	settings!: KnotworkPdfExportPluginSettings;
+  async onload() {
+    await this.loadSettings();
+    // Fire-and-forget: pay MathJax's one-time cold-start cost now, in the
+    // background, so it's already done by the time the user opens the export
+    // modal instead of adding several seconds to their first real render.
+    void warmUpMathJax(this.app);
+    this.addCommand({
+      id: "open-panel",
+      name: "Open Panel",
+      callback: () => this.openModal(),
+    });
+    this.registerEvent(
+      this.app.workspace.on("file-menu", (menu: Menu, file) => {
+        if (!(file instanceof TFile) || file.extension !== "md") return;
+        menu.addItem((item) =>
+          item.setTitle("Advanced PDF Export: Open Panel").setIcon("file-output")
+              .onClick(() => this.openModal(file)),
+        );
+      }),
+    );
+    this.addSettingTab(new PDFExportSettingTab(this.app, this));
+  }
 
-	async onload() {
-		await this.loadSettings();
+  onunload() {
+    this.activeModal?.close();
+  }
 
-		// This creates an icon in the left ribbon.
-		this.addRibbonIcon('book-text', 'Sample', (_evt: MouseEvent) => {
-			// Called when the user clicks the icon.
-			new Notice('This is a notice!');
-		});
+  openModal(file?: TFile) {
+    if (this.activeModal) this.activeModal.close();
+    new PDFExportModal(this.app, this, file).open();
+  }
 
-		// This adds a status bar item to the bottom of the app. Does not work on mobile apps.
-		const statusBarItemEl = this.addStatusBarItem();
-		statusBarItemEl.setText('Status bar text');
+  async loadSettings() {
+    const data = (await this.loadData() ?? {}) as Partial<PDFExportSettings> & { presetSnapshots?: Record<string, DocStyle> };
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, data);
 
-		// This adds a simple command that can be triggered anywhere
-		this.addCommand({
-			id: 'open-modal-simple',
-			name: 'Open modal (simple)',
-			callback: () => {
-				new SampleModal(this.app).open();
-			},
-		});
-		// This adds an editor command that can perform some operation on the current editor instance
-		this.addCommand({
-			id: 'replace-selected',
-			name: 'Replace selected content',
-			editorCallback: (
-				editor: Editor,
-				_ctx: MarkdownView | MarkdownFileInfo,
-			) => {
-				editor.replaceSelection('Sample editor command');
-			},
-		});
-		// This adds a complex command that can check whether the current state of the app allows execution of the command
-		this.addCommand({
-			id: 'open-modal-complex',
-			name: 'Open modal (complex)',
-			checkCallback: (checking: boolean) => {
-				// Conditions to check
-				const markdownView =
-					this.app.workspace.getActiveViewOfType(MarkdownView);
-				if (markdownView) {
-					// If checking is true, we're simply "checking" if the command can be run.
-					// If checking is false, then we want to actually perform the operation.
-					if (!checking) {
-						new SampleModal(this.app).open();
-					}
+    // Migration: codeTheme was added per-preset; absent value adopts the active preset's default.
+    if (data.codeTheme === undefined) {
+      this.settings.codeTheme = PRESETS[this.settings.preset]?.codeTheme ?? DEFAULT_SETTINGS.codeTheme;
+    }
 
-					// This command will only show up in Command Palette when the check function returns true
-					return true;
-				}
-				return false;
-			},
-		});
-		
-		// This adds a settings tab so the user can configure various aspects of the plugin
-		this.addSettingTab(new SampleSettingTab(this.app, this));
+    // Migration: boldColor was added per-preset; absent value keeps current body text color.
+    if (data.boldColor === undefined) {
+      this.settings.boldColor = this.settings.bodyColor;
+    }
 
-		// If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
-		// Using this function will automatically remove the event listener when this plugin is disabled.
-		this.registerDomEvent(activeDocument, 'click', (_evt: MouseEvent) => {
-			new Notice('Click');
-		});
+    this.presetSnapshots = data.presetSnapshots ?? {};
+    this.validateSettings();
+  }
 
-		// When registering intervals, this function will automatically clear the interval when the plugin is disabled.
-		this.registerInterval(
-			window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000),
-		);
-	}
+  /** Clamps critical numeric settings to safe ranges and repairs invalid
+   *  enum values. Called after load so corrupt or manually-edited JSON
+   *  cannot produce invisible text, zero-size pages, or bad layout. */
+  private validateSettings(): void {
+    const s = this.settings;
 
-	onunload() {}
+    // Unknown preset key → fall back to default.
+    if (!(s.preset in PRESETS)) {
+      console.warn(`[advanced-pdf-export] Unknown preset "${s.preset}", resetting to "default".`);
+      s.preset = "default";
+    }
 
-	async loadSettings() {
-		this.settings = Object.assign(
-			{},
-			DEFAULT_SETTINGS,
-			(await this.loadData()) as Partial<KnotworkPdfExportPluginSettings>,
-		);
-	}
+    // Font sizes must be positive to produce visible text.
+    s.fontSize         = Math.max(1,  s.fontSize);
+    s.headerFontSize   = Math.max(1,  s.headerFontSize);
+    s.footerFontSize   = Math.max(1,  s.footerFontSize);
 
-	async saveSettings() {
-		await this.saveData(this.settings);
-	}
-}
+    // Margins must be non-negative; zero is allowed (full-bleed layouts).
+    s.marginTop        = Math.max(0,  s.marginTop);
+    s.marginBottom     = Math.max(0,  s.marginBottom);
+    s.marginLeft       = Math.max(0,  s.marginLeft);
+    s.marginRight      = Math.max(0,  s.marginRight);
 
-class SampleModal extends Modal {
-	onOpen() {
-		const { contentEl } = this;
-		contentEl.setText('Woah!');
-	}
+    // Custom page dimensions need a printable minimum.
+    s.customPageWidth  = Math.max(10, s.customPageWidth);
+    s.customPageHeight = Math.max(10, s.customPageHeight);
 
-	onClose() {
-		const { contentEl } = this;
-		contentEl.empty();
-	}
+    // Preview scale must be a usable positive fraction.
+    s.previewScale     = Math.max(0.1, Math.min(3, s.previewScale));
+
+    // Page-number start must be at least 1.
+    s.pageNumberStart  = Math.max(1,  s.pageNumberStart);
+
+    // Page-number format: fall back to default when cleared.
+    if (!s.pageNumberFormat || !s.pageNumberFormat.trim()) {
+      s.pageNumberFormat = DEFAULT_SETTINGS.pageNumberFormat;
+    }
+  }
+
+  async saveSettings() {
+    await this.saveData({ ...this.settings, presetSnapshots: this.presetSnapshots });
+  }
+
+  async saveSettingsAndRender() {
+    await this.saveSettings();
+    this.activeModal?.render();
+  }
+
+  applyPreset(key: string, reset = false) {
+    const p = PRESETS[key];
+    if (!p) return;
+    if (reset) {
+      delete this.presetSnapshots[key];
+    } else {
+      this.presetSnapshots[this.settings.preset] = extractDocStyle(this.settings);
+    }
+    this.settings.preset = key;
+    Object.assign(this.settings, p, reset ? {} : (this.presetSnapshots[key] ?? {}));
+  }
+
+  /** Restores the Colors-group pickers of the active preset to PRESETS defaults.
+   *  Other presets' snapshots and non-color settings are left untouched. */
+  resetPresetColors(): void {
+    const key = this.settings.preset;
+    const p = PRESETS[key];
+    if (!p) return;
+    for (const k of PRESET_COLOR_KEYS) {
+      this.settings[k] = p[k];
+    }
+    const snap = this.presetSnapshots[key];
+    if (snap) {
+      for (const k of PRESET_COLOR_KEYS) {
+        snap[k] = p[k];
+      }
+    }
+  }
 }
