@@ -1,7 +1,7 @@
 {
 	"id": "knotwork-pdf-export",
 	"name": "Knotwork PDF Export",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"minAppVersion": "1.13.7",
 	"description": "Export a note as a pdf with control over layout and styling.",
 	"author": "ResoluteVinculum",

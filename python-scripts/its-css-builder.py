@@ -293,6 +293,13 @@ FORMAT = """\
     color: {color} !important;
     background: color-mix(in oklch, var(--callout-{color}) var(--callout-title-opacity), ${{s.pageBackground}}) !important;
   }}
+  /*** "color" or "c" changes for .callout-icon svg */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-{color}],
+  [data-callout-metadata~=c-{color}],
+  [data-callout-metadata~=bg-c-{color}],
+  [data-callout-metadata~=background-color-{color}]) > .callout-icon svg {{
+    stroke: {color} !important;
+    }}
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-{color}],
   [data-callout-metadata~=bg-{color}],
@@ -339,6 +346,45 @@ FOOT = """\
   .mpdf-doc .callout:is([data-callout-metadata~=background-color-plain],
   [data-callout-metadata~=bg-c-plain]) {
     --callout-color: var(--callout-plain);
+  }
+
+  /* Callout for Captions */
+  .mpdf-doc .callout:is([data-callout~=caption]) > .callout-title {
+    display: none !important;
+  }
+  .mpdf-doc .callout:is([data-callout~=caption]) {
+    border-inline-start: none !important;
+  }
+  
+  .mpdf-doc .callout:is([data-callout~=caption]) {
+    background: ${s.pageBackground} !important;
+    text-align: center !important;
+    border: 2px ${s.pageBackground} solid !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 30vh !important;
+  }
+  .mpdf-doc .callout:is([data-callout~=caption]) > callout-content {
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    border: 2px ${s.accentColor} solid !important;
+  }
+  .mpdf-doc .callout[data-callout~=caption] > .callout-content > p :is(.image-embed, img) + br {
+    display: none !important;
+  }
+  .mpdf-doc .callout[data-callout~=caption] > .callout-content img {
+    display: block !important;
+    margin: auto !important;
+    border-radius: 10px !important;
+  }
+  .mpdf-doc .callout[data-callout~=caption] p {
+    margin-block-start: 0 !important;
+    margin-block-end: 0 !important;
+    color: ${s.accentColor} !important;
+  }
+
+  .mpdf-doc .callout[data-callout~=caption]:is([data-callout-metadata~=sban], [data-callout-metadata~=banner]) .image-embed img {
+    width: 100% !important;
   }
 
 """

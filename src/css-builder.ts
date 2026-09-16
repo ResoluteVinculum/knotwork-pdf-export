@@ -432,6 +432,7 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
   }
   
 
+
   /* Generics */
   body,
   body.theme-dark,
@@ -723,6 +724,13 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     color: blue !important;
     background: color-mix(in oklch, var(--callout-blue) var(--callout-title-opacity), ${s.pageBackground}) !important;
   }
+  /*** "color" or "c" changes for .callout-icon svg */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-blue],
+  [data-callout-metadata~=c-blue],
+  [data-callout-metadata~=bg-c-blue],
+  [data-callout-metadata~=background-color-blue]) > .callout-icon svg {
+    stroke: blue !important;
+    }
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-blue],
   [data-callout-metadata~=bg-blue],
@@ -753,6 +761,13 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     color: green !important;
     background: color-mix(in oklch, var(--callout-green) var(--callout-title-opacity), ${s.pageBackground}) !important;
   }
+  /*** "color" or "c" changes for .callout-icon svg */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-green],
+  [data-callout-metadata~=c-green],
+  [data-callout-metadata~=bg-c-green],
+  [data-callout-metadata~=background-color-green]) > .callout-icon svg {
+    stroke: green !important;
+    }
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-green],
   [data-callout-metadata~=bg-green],
@@ -783,6 +798,13 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     color: orange !important;
     background: color-mix(in oklch, var(--callout-orange) var(--callout-title-opacity), ${s.pageBackground}) !important;
   }
+  /*** "color" or "c" changes for .callout-icon svg */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-orange],
+  [data-callout-metadata~=c-orange],
+  [data-callout-metadata~=bg-c-orange],
+  [data-callout-metadata~=background-color-orange]) > .callout-icon svg {
+    stroke: orange !important;
+    }
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-orange],
   [data-callout-metadata~=bg-orange],
@@ -813,6 +835,13 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     color: red !important;
     background: color-mix(in oklch, var(--callout-red) var(--callout-title-opacity), ${s.pageBackground}) !important;
   }
+  /*** "color" or "c" changes for .callout-icon svg */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-red],
+  [data-callout-metadata~=c-red],
+  [data-callout-metadata~=bg-c-red],
+  [data-callout-metadata~=background-color-red]) > .callout-icon svg {
+    stroke: red !important;
+    }
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-red],
   [data-callout-metadata~=bg-red],
@@ -843,6 +872,13 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     color: purple !important;
     background: color-mix(in oklch, var(--callout-purple) var(--callout-title-opacity), ${s.pageBackground}) !important;
   }
+  /*** "color" or "c" changes for .callout-icon svg */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-purple],
+  [data-callout-metadata~=c-purple],
+  [data-callout-metadata~=bg-c-purple],
+  [data-callout-metadata~=background-color-purple]) > .callout-icon svg {
+    stroke: purple !important;
+    }
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-purple],
   [data-callout-metadata~=bg-purple],
@@ -873,6 +909,13 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     color: gray !important;
     background: color-mix(in oklch, var(--callout-gray) var(--callout-title-opacity), ${s.pageBackground}) !important;
   }
+  /*** "color" or "c" changes for .callout-icon svg */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-gray],
+  [data-callout-metadata~=c-gray],
+  [data-callout-metadata~=bg-c-gray],
+  [data-callout-metadata~=background-color-gray]) > .callout-icon svg {
+    stroke: gray !important;
+    }
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-gray],
   [data-callout-metadata~=bg-gray],
@@ -903,6 +946,13 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     color: yellow !important;
     background: color-mix(in oklch, var(--callout-yellow) var(--callout-title-opacity), ${s.pageBackground}) !important;
   }
+  /*** "color" or "c" changes for .callout-icon svg */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-yellow],
+  [data-callout-metadata~=c-yellow],
+  [data-callout-metadata~=bg-c-yellow],
+  [data-callout-metadata~=background-color-yellow]) > .callout-icon svg {
+    stroke: yellow !important;
+    }
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-yellow],
   [data-callout-metadata~=bg-yellow],
@@ -933,6 +983,13 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     color: pink !important;
     background: color-mix(in oklch, var(--callout-pink) var(--callout-title-opacity), ${s.pageBackground}) !important;
   }
+  /*** "color" or "c" changes for .callout-icon svg */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-pink],
+  [data-callout-metadata~=c-pink],
+  [data-callout-metadata~=bg-c-pink],
+  [data-callout-metadata~=background-color-pink]) > .callout-icon svg {
+    stroke: pink !important;
+    }
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-pink],
   [data-callout-metadata~=bg-pink],
@@ -963,6 +1020,13 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     color: brown !important;
     background: color-mix(in oklch, var(--callout-brown) var(--callout-title-opacity), ${s.pageBackground}) !important;
   }
+  /*** "color" or "c" changes for .callout-icon svg */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-brown],
+  [data-callout-metadata~=c-brown],
+  [data-callout-metadata~=bg-c-brown],
+  [data-callout-metadata~=background-color-brown]) > .callout-icon svg {
+    stroke: brown !important;
+    }
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-brown],
   [data-callout-metadata~=bg-brown],
@@ -993,6 +1057,13 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     color: black !important;
     background: color-mix(in oklch, var(--callout-black) var(--callout-title-opacity), ${s.pageBackground}) !important;
   }
+  /*** "color" or "c" changes for .callout-icon svg */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-black],
+  [data-callout-metadata~=c-black],
+  [data-callout-metadata~=bg-c-black],
+  [data-callout-metadata~=background-color-black]) > .callout-icon svg {
+    stroke: black !important;
+    }
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-black],
   [data-callout-metadata~=bg-black],
@@ -1023,6 +1094,13 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     color: white !important;
     background: color-mix(in oklch, var(--callout-white) var(--callout-title-opacity), ${s.pageBackground}) !important;
   }
+  /*** "color" or "c" changes for .callout-icon svg */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-white],
+  [data-callout-metadata~=c-white],
+  [data-callout-metadata~=bg-c-white],
+  [data-callout-metadata~=background-color-white]) > .callout-icon svg {
+    stroke: white !important;
+    }
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-white],
   [data-callout-metadata~=bg-white],
@@ -1079,14 +1157,15 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
   .mpdf-doc .callout:is([data-callout~=caption]) {
     background: ${s.pageBackground} !important;
     text-align: center !important;
-    border: 4px ${s.accentColor} double !important;
-    border-radius: 10px !important;
+    border: 2px ${s.pageBackground} solid !important;
     padding: 0 !important;
     margin: 0 !important;
     max-width: 30vh !important;
   }
   .mpdf-doc .callout:is([data-callout~=caption]) > callout-content {
+    border-radius: 10px !important;
     overflow: hidden !important;
+    border: 2px ${s.accentColor} solid !important;
   }
   .mpdf-doc .callout[data-callout~=caption] > .callout-content > p :is(.image-embed, img) + br {
     display: none !important;
@@ -1105,6 +1184,8 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
   .mpdf-doc .callout[data-callout~=caption]:is([data-callout-metadata~=sban], [data-callout-metadata~=banner]) .image-embed img {
     width: 100% !important;
   }
+
+
 
   /* Mermaid diagrams — centre the SVG and prevent it overflowing the content
    * column.  The <style> block inside the SVG is intentionally left untouched;

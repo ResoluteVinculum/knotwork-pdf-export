@@ -1,6 +1,6 @@
 {
 	"name": "knotwork-pdf-export",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "Export a note as a pdf with control over layout and styling.",
 	"main": "main.js",
 	"type": "module",
