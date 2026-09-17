@@ -363,6 +363,7 @@ FOOT = """\
     padding: 0 !important;
     margin: 0 !important;
     max-width: 30vh !important;
+    box-shadow: 0 0 0 10px ${s.pageBackground} !important;
   }
   .mpdf-doc .callout:is([data-callout~=caption]) > callout-content {
     border-radius: 10px !important;

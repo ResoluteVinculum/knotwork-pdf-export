@@ -430,9 +430,6 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     border-inline-start-color: ${s.accentColor}66 !important;
     background: ${s.pageBackground} !important;
   }
-  
-
-
   /* Generics */
   body,
   body.theme-dark,
@@ -1161,6 +1158,7 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     padding: 0 !important;
     margin: 0 !important;
     max-width: 30vh !important;
+    box-shadow: 0 0 0 10px ${s.pageBackground} !important;
   }
   .mpdf-doc .callout:is([data-callout~=caption]) > callout-content {
     border-radius: 10px !important;
@@ -1184,8 +1182,6 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
   .mpdf-doc .callout[data-callout~=caption]:is([data-callout-metadata~=sban], [data-callout-metadata~=banner]) .image-embed img {
     width: 100% !important;
   }
-
-
 
   /* Mermaid diagrams — centre the SVG and prevent it overflowing the content
    * column.  The <style> block inside the SVG is intentionally left untouched;
