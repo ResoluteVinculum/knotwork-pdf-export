@@ -39,7 +39,19 @@ export default class MarkdownPDFPlugin extends Plugin {
         );
       }),
     );
-    this.addSettingTab(new PDFExportSettingTab(this.app, this));
+    const snippets = await this.getSnippets();
+    this.addSettingTab(new PDFExportSettingTab(this.app, this, snippets));
+  }
+
+  async getSnippets() {
+    const output : Record<string, string> = [];
+    const snippets : string[] = this.app.customCss?.snippets ?? [];
+    for (const i in snippets) {
+      const snippet = snippets[i];
+      if ( !snippet || !snippet.contains("knotpdf")) continue;
+      output[`.obsidian/snippets/${snippet}.css`] = await this.app.vault.adapter.read(`.obsidian/snippets/${snippet}.css`);
+    }
+    return output;
   }
 
   onunload() {
@@ -77,7 +89,7 @@ export default class MarkdownPDFPlugin extends Plugin {
 
     // Unknown preset key → fall back to default.
     if (!(s.preset in PRESETS)) {
-      console.warn(`[advanced-pdf-export] Unknown preset "${s.preset}", resetting to "default".`);
+      console.warn(`[knotwork-pdf-export] Unknown preset "${s.preset}", resetting to "default".`);
       s.preset = "default";
     }
 

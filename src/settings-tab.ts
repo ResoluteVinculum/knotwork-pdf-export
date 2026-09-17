@@ -11,6 +11,7 @@
 import {
   App, PluginSettingTab, ButtonComponent,
   SettingDefinitionItem, SettingDefinitionControl, SettingDefinitionGroup, SettingGroupItem,
+  ToggleComponent,
 } from "obsidian";
 import type MarkdownPDFPlugin from "./main";
 import { PAGE_SIZES, PRESETS } from "./settings";
@@ -27,13 +28,15 @@ const NUMERIC_DROPDOWN_KEYS = new Set([
 
 export class PDFExportSettingTab extends PluginSettingTab {
   plugin: MarkdownPDFPlugin;
+  availableSnippets: Record<string, string>;
 
   /** True when any setting changed while this tab is open; triggers a single render on hide(). */
   private dirty = false;
 
-  constructor(app: App, plugin: MarkdownPDFPlugin) {
+  constructor(app: App, plugin: MarkdownPDFPlugin, availableSnippets:Record<string, string>) {
     super(app, plugin);
     this.plugin = plugin;
+    this.availableSnippets = availableSnippets;
   }
 
   /** Called by Obsidian when the user leaves this tab. Fires one render if settings changed. */
@@ -108,7 +111,7 @@ export class PDFExportSettingTab extends PluginSettingTab {
     const fontSizeOptions: Record<string, string> = {};
     ["10", "11", "12", "13", "14", "15", "16"].forEach((v) => { fontSizeOptions[v] = v + "px"; });
 
-    return [
+    let menus = [
       group("Style Preset", [
         {
           name: "Preset",
@@ -314,6 +317,26 @@ export class PDFExportSettingTab extends PluginSettingTab {
         toggle("Include PDF outline (bookmarks)", "includeOutline",
           "Embeds a bookmark tree into the exported PDF. Most PDF readers display it in a side panel for quick navigation."),
       ]),
+      {
+        type: "group",
+        heading: "Custom CSS",
+        items: Object.entries(this.availableSnippets).map( record => {
+          return {
+            name: record[0],
+            control: {
+              type: "toggle"
+            }
+          }
+        })
+      }
     ];
+    
+    // console.log(
+    //   Object.entries(this.availableSnippets).map((record) => {
+    //     return [record[0], record[1]];
+    //   })
+    // );
+
+    return menus;
   }
 }

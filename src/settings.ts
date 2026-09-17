@@ -117,6 +117,7 @@ export interface PDFExportSettings extends DocStyle {
   backgroundImageOpacity: number;
   /** When true, headings H1–H6 are embedded as a bookmark tree in the exported PDF. */
   includeOutline: boolean;
+  customCSSFiles: string[];
 }
 
 // ─── Style Presets ────────────────────────────────────────────────────────────
@@ -354,6 +355,7 @@ export const DEFAULT_SETTINGS: PDFExportSettings = {
   backgroundImageOpacity: 1,
   // Outline / bookmarks
   includeOutline: true,
+  customCSSFiles: [],
 };
 
 /** Color pickers in the Colors settings group. Used to reset only those

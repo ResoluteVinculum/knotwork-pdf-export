@@ -210,7 +210,7 @@ export async function renderMarkdownToEl(
         new Promise<void>((resolve) => { timer = window.setTimeout(resolve, FINISH_RENDER_MATH_TIMEOUT_MS); }),
       ]);
     } catch (err) {
-      console.warn("[advanced-pdf-export] finishRenderMath failed:", err);
+      console.warn("[knotwork-pdf-export] finishRenderMath failed:", err);
     }
     await waitForMermaidDiagrams(temp);
     await waitForMathRendering(temp);
@@ -254,7 +254,7 @@ export async function warmUpMathJax(app: App): Promise<void> {
       component,
     );
   } catch (err) {
-    console.warn("[advanced-pdf-export] MathJax warm-up failed (non-fatal):", err);
+    console.warn("[knotwork-pdf-export] MathJax warm-up failed (non-fatal):", err);
   } finally {
     component.unload();
   }
