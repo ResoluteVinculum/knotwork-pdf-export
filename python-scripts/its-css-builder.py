@@ -294,13 +294,6 @@ FORMAT = """\
     color: {color} !important;
     background: color-mix(in oklch, var(--callout-{color}) var(--callout-title-opacity), var(--mpdf-pageBackground)) !important;
   }}
-  /*** "color" or "c" changes for .callout-icon svg */
-  .mpdf-doc .callout:is([data-callout-metadata~=color-{color}],
-  [data-callout-metadata~=c-{color}],
-  [data-callout-metadata~=bg-c-{color}],
-  [data-callout-metadata~=background-color-{color}]) .callout-icon svg {{
-    stroke: {color} !important;
-    }}
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-{color}],
   [data-callout-metadata~=bg-{color}],
@@ -410,6 +403,14 @@ FOOT = """\
     --callout-color: var(--callout-plain);
   }
 
+  /*** "color" or "c" changes for .callout-icon svg */
+  .mpdf-doc .callout:is([data-callout-metadata*=color-],
+  [data-callout-metadata*=c-],
+  [data-callout-metadata*=bg-c-],
+  [data-callout-metadata*=background-color-]) .callout-icon svg {
+    stroke: var(--callout-title) !important;
+    }
+
   /* Callout for Captions */
   .mpdf-doc .callout:is([data-callout~=caption]) > .callout-title {
     display: none !important;
@@ -419,16 +420,16 @@ FOOT = """\
   }
   
   .mpdf-doc .callout:is([data-callout~=caption]) {
-    background: var(--mpdf-pageBackground} !important;
+    background: var(--mpdf-pageBackground) !important;
     text-align: center !important;
-    border: 2px var(--mpdf-accentColor} solid !important;
+    border: 2px var(--mpdf-accentColor) solid !important;
     padding: 0 !important;
-    box-shadow: 0 0 0 10px var(--mpdf-pageBackground} !important;
+    box-shadow: 0 0 0 10px var(--mpdf-pageBackground) !important;
   }
   .mpdf-doc .callout:is([data-callout~=caption]) > callout-content {
     border-radius: 10px !important;
     overflow: hidden !important;
-    border: 2px var(--mpdf-accentColor} solid !important;
+    border: 2px var(--mpdf-accentColor) solid !important;
   }
   .mpdf-doc .callout[data-callout~=caption] > .callout-content > p :is(.image-embed, img) + br {
     display: none !important;
@@ -441,7 +442,7 @@ FOOT = """\
   .mpdf-doc .callout[data-callout~=caption] p {
     margin-block-start: 0 !important;
     margin-block-end: 0 !important;
-    color: var(--mpdf-accentColor} !important;
+    color: var(--mpdf-accentColor) !important;
   }
 
   .mpdf-doc .callout[data-callout~=caption]:is([data-callout-metadata~=sban], [data-callout-metadata~=banner]) .image-embed img {
