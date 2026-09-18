@@ -16,6 +16,10 @@ export const PAGE_SIZES: Record<string, { w: number; h: number }> = {
   A5:     { w: 559,  h: 794  },
 };
 
+interface CSSFileEntry {
+  key: string;
+  enabled: boolean;
+}
 export interface DocStyle {
   name: string;
   fontFamily: string;
@@ -117,7 +121,7 @@ export interface PDFExportSettings extends DocStyle {
   backgroundImageOpacity: number;
   /** When true, headings H1–H6 are embedded as a bookmark tree in the exported PDF. */
   includeOutline: boolean;
-  customCSSFiles: string[];
+  customCSSFiles: CSSFileEntry[];
 }
 
 // ─── Style Presets ────────────────────────────────────────────────────────────

@@ -55,9 +55,15 @@ export default class MarkdownPDFPlugin extends Plugin {
   }
 
   async getCustomCSS() {
-    const cssRecords = await this.getSnippets();
+    const cssRecords = this.settings.customCSSFiles.filter(record => record.enabled);
+    let css = "";
+    for (const r in cssRecords) {
+      const data = await this.app.vault.adapter.read(cssRecords[r].key);
+      css += data + "\n";
+    }
+    console.log(css);
 
-    return Object.entries(cssRecords).map(record => record[1]).join("").trim();
+    // return Object.entries(cssRecords).map(record => record[1]).join("").trim();
   }
 
   onunload() {

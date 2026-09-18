@@ -583,7 +583,7 @@ export function getMathJaxCSS(): string {
   } catch (err) {
     // adoptedStyleSheets unsupported in this Electron/Chromium build — degrade
     // to style-tag CSS only.
-    console.warn("[advanced-pdf-export] adoptedStyleSheets read failed:", err);
+    console.warn("[knotwork-pdf-export] adoptedStyleSheets read failed:", err);
   }
 
   return adoptedCSS ? `${styleTagCSS}\n${adoptedCSS}` : styleTagCSS;

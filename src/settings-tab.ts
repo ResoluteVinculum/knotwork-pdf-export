@@ -319,28 +319,43 @@ export class PDFExportSettingTab extends PluginSettingTab {
       ]),
       // TODO NEEDS TESTING
       {
-        type: "group",
+        type: "list",
         heading: "Custom CSS",
+        emptyState: "No CSS snippets found matching ^knotpdf-.*\.css",
         items: Object.entries(this.availableSnippets).map( record => {
+          const bools = this.plugin.settings.customCSSFiles.map(p => p === record[0])
+          const contains = bools.contains(true);
+          const idx = !contains ? bools.length : bools.indexOf(true);
+          console.log(bools, contains, idx);
+          if ( !contains ) {
+            this.plugin.settings.customCSSFiles[idx] = {key: record[0], enabled: contains};
+          }
           return {
             name: record[0],
             render: (setting) => {
               setting
                 .addToggle( (toggle) => toggle
-                  .setValue(record[0])
+                  .setValue(this.plugin.settings.customCSSFiles[record[0]])
                   .onChange( async (value) => {
-                    if ( this.plugin.settings.customCSSFiles.contains(value) ) {
-                      const idx = this.plugin.settings.customCSSFiles.indexOf(value)
-                      this.plugin.settings.customCSSFiles.splice(idx);
-                    } else {
-                      this.plugin.settings.customCSSFiles.push(value);
-                    }
+                    const cssFile = record[0];
+                    this.plugin.settings.customCSSFiles[idx] = { 
+                      key: record[0],
+                      enabled: value
+                    };
                     await this.plugin.saveData(this.plugin.settings);
                   })
               )
             }
           }
-        })
+        }),
+        onReorder: async (oldIndex, newIndex) => {
+          const arr = this.plugin.settings.customCSSFiles;
+          let [moved] = arr.splice(oldIndex, 1);
+          arr.splice(newIndex, 0, moved);
+          this.plugin.settings.customCSSFiles = arr;
+          await this.plugin.saveData(this.plugin.settings);
+                    
+        }
       }
     ];
     
