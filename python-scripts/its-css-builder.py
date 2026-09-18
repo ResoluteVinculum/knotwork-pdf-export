@@ -289,6 +289,7 @@ FORMAT = """\
   [data-callout-metadata~=c-{color}],
   [data-callout-metadata~=bg-c-{color}],
   [data-callout-metadata~=background-color-{color}]) > .callout-title {{
+    --callout-title: var(--callout-blue);
     --callout-color: var(--callout-title);
     color: {color} !important;
     background: color-mix(in oklch, var(--callout-{color}) var(--callout-title-opacity), var(--mpdf-pageBackground)) !important;
@@ -318,6 +319,66 @@ FORMAT = """\
 """
 
 FOOT = """\
+  /** black */
+  /*** Color Selection */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-black],
+  [data-callout-metadata~=c-black]) {
+    --callout-title: var(--callout-black);
+  }
+  /*** "color" or "c" changes for .callout-title */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-black],
+  [data-callout-metadata~=c-black],
+  [data-callout-metadata~=bg-c-black],
+  [data-callout-metadata~=background-color-black]) > .callout-title {
+    --callout-title: var(--callout-black);
+    --callout-color: var(--callout-title);
+    color: black !important;
+    background: color-mix(in oklch, var(--callout-black) var(--callout-title-opacity), white) !important;
+  }
+  /*** "background" or "bg" changes for .callout-content */
+  .mpdf-doc .callout:is([data-callout-metadata~=background-black],
+  [data-callout-metadata~=bg-black],
+  [data-callout-metadata~=background-color-black],
+  [data-callout-metadata~=bg-c-black]) > .callout-content {
+    --callout-background: color-mix(in oklch, var(--callout-black) var(--callout-color-opacity), white);
+    background-color: var(--callout-background) !important;
+    background: var(--callout-background) !important;
+  }
+  /*** Callout color variable setting */
+  .mpdf-doc .callout:is([data-callout-metadata~=background-color-black],
+  [data-callout-metadata~=bg-c-black]) {
+    --callout-color: var(--callout-black);
+  }
+  /** white */
+  /*** Color Selection */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-white],
+  [data-callout-metadata~=c-white]) {
+    --callout-title: var(--callout-white);
+  }
+  /*** "color" or "c" changes for .callout-title */
+  .mpdf-doc .callout:is([data-callout-metadata~=color-white],
+  [data-callout-metadata~=c-white],
+  [data-callout-metadata~=bg-c-white],
+  [data-callout-metadata~=background-color-white]) > .callout-title {
+    --callout-title: var(--callout-white);
+    --callout-color: var(--callout-title);
+    color: white !important;
+    background: color-mix(in oklch, var(--callout-white) var(--callout-title-opacity), black) !important;
+  }
+  /*** "background" or "bg" changes for .callout-content */
+  .mpdf-doc .callout:is([data-callout-metadata~=background-white],
+  [data-callout-metadata~=bg-white],
+  [data-callout-metadata~=background-color-white],
+  [data-callout-metadata~=bg-c-white]) > .callout-content {
+    --callout-background: color-mix(in oklch, var(--callout-white) var(--callout-color-opacity), black);
+    background-color: var(--callout-background) !important;
+    background: var(--callout-background) !important;
+  }
+  /*** Callout color variable setting */
+  .mpdf-doc .callout:is([data-callout-metadata~=background-color-white],
+  [data-callout-metadata~=bg-c-white]) {
+    --callout-color: var(--callout-white);
+  }
   /** plain */
   /*** Color Selection */
   .mpdf-doc .callout:is([data-callout-metadata~=color-plain],
@@ -329,16 +390,17 @@ FOOT = """\
   [data-callout-metadata~=c-plain],
   [data-callout-metadata~=bg-c-plain],
   [data-callout-metadata~=background-color-plain]) > .callout-title {
+    --callout-title: var(--callout-plain);
     --callout-color: var(--callout-title);
     color: plain !important;
-    background: color-mix(in oklch, var(--callout-plain) var(--callout-title-opacity), var(--mpdf-pageBackground}) !important;
+    background: color-mix(in oklch, var(--callout-plain) var(--callout-title-opacity), var(--mpdf-pageBackground) !important;
   }
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-plain],
   [data-callout-metadata~=bg-plain],
   [data-callout-metadata~=background-color-plain],
   [data-callout-metadata~=bg-c-plain]) > .callout-content {
-    --callout-background: color-mix(in oklch, var(--callout-plain) var(--callout-color-opacity), var(--mpdf-pageBackground});
+    --callout-background: color-mix(in oklch, var(--callout-plain) var(--callout-color-opacity), var(--mpdf-pageBackground);
     background-color: var(--callout-background) !important;
     background: var(--callout-background) !important;
   }
@@ -361,8 +423,6 @@ FOOT = """\
     text-align: center !important;
     border: 2px var(--mpdf-accentColor} solid !important;
     padding: 0 !important;
-    margin: 0 !important;
-    max-width: 30vh !important;
     box-shadow: 0 0 0 10px var(--mpdf-pageBackground} !important;
   }
   .mpdf-doc .callout:is([data-callout~=caption]) > callout-content {
@@ -391,7 +451,7 @@ FOOT = """\
 """
 
 output = HEAD
-for color in ["blue", "green", "orange", "red", "purple", "gray", "yellow", "pink", "brown", "black", "white"]:
+for color in ["blue", "green", "orange", "red", "purple", "gray", "yellow", "pink", "brown"]:
     output += FORMAT.format(color=color)
 output += FOOT
 
