@@ -43,8 +43,8 @@ export default class MarkdownPDFPlugin extends Plugin {
     this.addSettingTab(new PDFExportSettingTab(this.app, this, snippets));
   }
 
-  async getSnippets() {
-    const output : Record<string, string> = [];
+  async getSnippets() : Promise<Record<string, string>> {
+    const output : Record<string, string> = {};
     const snippets : string[] = this.app.customCss?.snippets ?? [];
     for (const i in snippets) {
       const snippet = snippets[i];
@@ -52,6 +52,12 @@ export default class MarkdownPDFPlugin extends Plugin {
       output[`.obsidian/snippets/${snippet}.css`] = await this.app.vault.adapter.read(`.obsidian/snippets/${snippet}.css`);
     }
     return output;
+  }
+
+  async getCustomCSS() {
+    const cssRecords = await this.getSnippets();
+
+    return Object.entries(cssRecords).map(record => record[1]).join("").trim();
   }
 
   onunload() {

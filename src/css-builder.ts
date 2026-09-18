@@ -274,7 +274,7 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
   const tableHeaderTextColor =
     hexLuminance(s.tableHeaderBg) < 0.35 ? "#fff" : s.headingColor;
 
-  let outputCSS = `
+  return `
   .mpdf-doc {
     /* Presets */
     --mpdf-fontFamily: ${s.fontFamily};
@@ -352,7 +352,6 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     --mpdf-backgroundImageScope: ${s.backgroundImageScope};
     --mpdf-backgroundImageOpacity: ${s.backgroundImageOpacity};
     --mpdf-includeOutline: ${s.includeOutline};
-    --mpdf-customCSS: ${s.customCSS};
   }
 
   .mpdf-doc {
@@ -526,10 +525,7 @@ export function buildDocCSS(s: PDFExportSettings, isRTL = false): string {
     display: block;
   }
   `.trim();
-  for ( const file in s.customCSSFiles ) {
-    console.log(file);
-  }
-  return outputCSS;
+
 
 }
 

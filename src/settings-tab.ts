@@ -111,7 +111,7 @@ export class PDFExportSettingTab extends PluginSettingTab {
     const fontSizeOptions: Record<string, string> = {};
     ["10", "11", "12", "13", "14", "15", "16"].forEach((v) => { fontSizeOptions[v] = v + "px"; });
 
-    let menus = [
+    return [
       group("Style Preset", [
         {
           name: "Preset",
@@ -323,20 +323,25 @@ export class PDFExportSettingTab extends PluginSettingTab {
         items: Object.entries(this.availableSnippets).map( record => {
           return {
             name: record[0],
-            control: {
-              type: "toggle"
+            render: (setting) => {
+              setting
+                .addToggle( (toggle) => toggle
+                  .setValue(record[0])
+                  .onChange( async (value) => {
+                    if ( this.plugin.settings.customCSSFiles.contains(value) ) {
+                      const idx = this.plugin.settings.customCSSFiles.indexOf(value)
+                      this.plugin.settings.customCSSFiles.splice(idx);
+                    } else {
+                      this.plugin.settings.customCSSFiles.push(value);
+                    }
+                    await this.plugin.saveData(this.plugin.settings);
+                  })
+              )
             }
           }
         })
       }
     ];
     
-    // console.log(
-    //   Object.entries(this.availableSnippets).map((record) => {
-    //     return [record[0], record[1]];
-    //   })
-    // );
-
-    return menus;
   }
 }
