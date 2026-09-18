@@ -317,6 +317,7 @@ export class PDFExportSettingTab extends PluginSettingTab {
         toggle("Include PDF outline (bookmarks)", "includeOutline",
           "Embeds a bookmark tree into the exported PDF. Most PDF readers display it in a side panel for quick navigation."),
       ]),
+      // TODO NEEDS TESTING
       {
         type: "group",
         heading: "Custom CSS",
