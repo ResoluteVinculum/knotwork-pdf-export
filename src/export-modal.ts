@@ -536,8 +536,7 @@ export class PDFExportModal extends Modal {
     const contentW = Math.max(1, pw - mLeft - mRight);
     const contentH = Math.max(1, ph - mTop - mBottom - footerH - headerH);
     const isRTL    = isRTLContent(this.editorEl.value);
-    const docCSS   =  buildDocCSS(s, isRTL);
-    await this.plugin.getCustomCSS();
+    const docCSS   =  (buildDocCSS(s, isRTL) + await this.plugin.getCustomCSS()).trim();
     const sourcePath = this.currentFile?.path ?? "pdf-export";
 
     const sectionEls = await Promise.all(

@@ -386,14 +386,14 @@ FOOT = """\
     --callout-title: var(--callout-plain);
     --callout-color: var(--callout-title);
     color: plain !important;
-    background: color-mix(in oklch, var(--callout-plain) var(--callout-title-opacity), var(--mpdf-pageBackground) !important;
+    background: color-mix(in oklch, var(--callout-plain) var(--callout-title-opacity), var(--mpdf-pageBackground)) !important;
   }
   /*** "background" or "bg" changes for .callout-content */
   .mpdf-doc .callout:is([data-callout-metadata~=background-plain],
   [data-callout-metadata~=bg-plain],
   [data-callout-metadata~=background-color-plain],
   [data-callout-metadata~=bg-c-plain]) > .callout-content {
-    --callout-background: color-mix(in oklch, var(--callout-plain) var(--callout-color-opacity), var(--mpdf-pageBackground);
+    --callout-background: color-mix(in oklch, var(--callout-plain) var(--callout-color-opacity), var(--mpdf-pageBackground)) !important;
     background-color: var(--callout-background) !important;
     background: var(--callout-background) !important;
   }

@@ -62,8 +62,7 @@ export default class MarkdownPDFPlugin extends Plugin {
       css += data + "\n";
     }
     console.log(css);
-
-    // return Object.entries(cssRecords).map(record => record[1]).join("").trim();
+    return css.trim();
   }
 
   onunload() {
