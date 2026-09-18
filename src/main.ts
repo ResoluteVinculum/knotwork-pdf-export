@@ -43,15 +43,12 @@ export default class MarkdownPDFPlugin extends Plugin {
     this.addSettingTab(new PDFExportSettingTab(this.app, this, snippets));
   }
 
-  async getSnippets() : Promise<Record<string, string>> {
+  async getSnippets() : Promise<string[]> {
     const output : Record<string, string> = {};
     const snippets : string[] = this.app.customCss?.snippets ?? [];
-    for (const i in snippets) {
-      const snippet = snippets[i];
-      if ( !snippet || !snippet.contains("knotpdf")) continue;
-      output[`.obsidian/snippets/${snippet}.css`] = await this.app.vault.adapter.read(`.obsidian/snippets/${snippet}.css`);
-    }
-    return output;
+    return snippets.filter(snip => RegExp("^knotpdf-.*$")
+      .test(snip))
+      .map(snip => `.obsidian/snippets/${snip}.css`);
   }
 
   async getCustomCSS() {
@@ -61,7 +58,6 @@ export default class MarkdownPDFPlugin extends Plugin {
       const data = await this.app.vault.adapter.read(cssRecords[r].key);
       css += data + "\n";
     }
-    console.log(css);
     return css.trim();
   }
 

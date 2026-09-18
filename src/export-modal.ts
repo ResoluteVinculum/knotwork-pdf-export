@@ -396,7 +396,7 @@ export class PDFExportModal extends Modal {
     settingsBtn.addEventListener("click", () => {
       const settings = (this.app as App & AppWithSettings).setting;
       settings?.open?.();
-      settings?.openTabById?.("advanced-pdf-export");
+      settings?.openTabById?.("knotwork-pdf-export");
     });
 
     this.renderBtn = right.createEl("button", { cls: "mpdf-btn", text: "⟳ Render PDF" });
@@ -445,9 +445,9 @@ export class PDFExportModal extends Modal {
     const safeDo = () =>
       this.doRender(token).catch((err: unknown) => {
         const msg = err instanceof Error ? err.message : String(err);
-        console.error("[advanced-pdf-export] render error:", err);
+        console.error("[knotwork-pdf-export] render error:", err);
         this.hideLoading();
-        new Notice("Advanced PDF Export — render failed: " + msg);
+        new Notice("Knotwork PDF Export — render failed: " + msg);
       });
 
     if (immediate) {
@@ -538,7 +538,6 @@ export class PDFExportModal extends Modal {
     const isRTL    = isRTLContent(this.editorEl.value);
     const docCSS   =  (buildDocCSS(s, isRTL) + await this.plugin.getCustomCSS()).trim();
     const sourcePath = this.currentFile?.path ?? "pdf-export";
-
     const sectionEls = await Promise.all(
       sections.map((sec) => renderMarkdownToEl(this.app, sec, sourcePath, this.renderComponent)),
     );
@@ -1004,7 +1003,7 @@ ${pageHTMLParts.join("\n")}
           try {
             data = await injectPDFOutline(data, extractOutlineEntries(layouts));
           } catch (outlineErr) {
-            console.warn("[advanced-pdf-export] outline injection failed:", outlineErr);
+            console.warn("[knotwork-pdf-export] outline injection failed:", outlineErr);
           }
         }
         electron.require("fs").writeFile(res.filePath, data, (err: Error | null) => {

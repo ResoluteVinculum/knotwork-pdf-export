@@ -1,9 +1,9 @@
 HEAD = """\
 
-  /* Generics */
-  body,
-  body.theme-dark,
-  body.theme-light {
+/* Generics */
+body,
+body.theme-dark,
+body.theme-light {
   --font-default: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Microsoft YaHei Light", sans-serif;
   --font-monospace: "Fira Code", "Fira Code Medium", "Source Code Pro", monospace;
   --font-text: var(--font-text-override), var(--font-default);
@@ -69,385 +69,385 @@ HEAD = """\
   --box-border: 2px solid var(--outline);
   --box-border-m: 3px solid var(--outline);
 }
-  /* Callout Sizing */
-  .mpdf-doc .callout {
-    --callout-micro: 10%;
-    --callout-tiny: 20%;
-    --callout-small: 30%;
-    --callout-small-med: 35%;
-    --callout-med-small: 40%;
-    --callout-medium: 50%;
-    --callout-med-tall: 65%;
-    --callout-tall-med: 80%;
-    --callout-tall: 95%;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=wmicro] {
-    max-width: unset !important;
-    width: var(--callout-micro) !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=wtiny] {
-    max-width: unset !important;
-    width: var(--callout-tiny) !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=wsmall] {
-    max-width: unset !important;
-    width: var(--callout-small) !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=ws-med] {
-    max-width: unset !important;
-    width: var(--callout-small-med) !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=wm-sm] {
-    max-width: unset !important;
-    width: var(--callout-med-small) !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=wmed] {
-    max-width: unset !important;
-    width: var(--callout-medium) !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=wm-tl] {
-    max-width: unset !important;
-    width: var(--callout-med-tall) !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=wtl-med] {
-    max-width: unset !important;
-    width: var(--callout-tall-med) !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=wtall] {
-    max-width: unset !important;
-    width: var(--callout-tall) !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=sban], .mpdf-doc .callout[data-callout-metadata~=wfull] {
-    width: 100% !important;
-    float: unset !important;
-    max-width: 100% !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=wtiny-c] {
-    width: 19% !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=wsmall-c] {
-    width: 32.4% !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=ws-med-c] {
-    width: 39% !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=wm-sm-c] {
-    width: 49% !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=wmed-c] {
-    width: 59% !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=wm-tl-c] {
-    width: 79% !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=wfit] {
-    width: fit-content !important;
-    max-width: min-content !important;
-  }
-  .mpdf-doc .callout[data-callout-metadata~=static] {
-    --callout-micro: 50px;
-    --callout-tiny: 100px;
-    --callout-small: 200px;
-    --callout-small-med: 300px;
-    --callout-med-small: 400px;
-    --callout-medium: 500px;
-    --callout-med-tall: 600px;
-    --callout-tall: 700px;
-  }
+/* Callout Sizing */
+.mpdf-doc .callout {
+  --callout-micro: 10%;
+  --callout-tiny: 20%;
+  --callout-small: 30%;
+  --callout-small-med: 35%;
+  --callout-med-small: 40%;
+  --callout-medium: 50%;
+  --callout-med-tall: 65%;
+  --callout-tall-med: 80%;
+  --callout-tall: 95%;
+}
+.mpdf-doc .callout[data-callout-metadata~=wmicro] {
+  max-width: unset !important;
+  width: var(--callout-micro) !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=wtiny] {
+  max-width: unset !important;
+  width: var(--callout-tiny) !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=wsmall] {
+  max-width: unset !important;
+  width: var(--callout-small) !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=ws-med] {
+  max-width: unset !important;
+  width: var(--callout-small-med) !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=wm-sm] {
+  max-width: unset !important;
+  width: var(--callout-med-small) !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=wmed] {
+  max-width: unset !important;
+  width: var(--callout-medium) !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=wm-tl] {
+  max-width: unset !important;
+  width: var(--callout-med-tall) !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=wtl-med] {
+  max-width: unset !important;
+  width: var(--callout-tall-med) !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=wtall] {
+  max-width: unset !important;
+  width: var(--callout-tall) !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=sban], .mpdf-doc .callout[data-callout-metadata~=wfull] {
+  width: 100% !important;
+  float: unset !important;
+  max-width: 100% !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=wtiny-c] {
+  width: 19% !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=wsmall-c] {
+  width: 32.4% !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=ws-med-c] {
+  width: 39% !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=wm-sm-c] {
+  width: 49% !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=wmed-c] {
+  width: 59% !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=wm-tl-c] {
+  width: 79% !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=wfit] {
+  width: fit-content !important;
+  max-width: min-content !important;
+}
+.mpdf-doc .callout[data-callout-metadata~=static] {
+  --callout-micro: 50px;
+  --callout-tiny: 100px;
+  --callout-small: 200px;
+  --callout-small-med: 300px;
+  --callout-med-small: 400px;
+  --callout-medium: 500px;
+  --callout-med-tall: 600px;
+  --callout-tall: 700px;
+}
 
-  .mpdf-doc .callout:is([data-callout-metadata~=content-padding-small],
-  [data-callout-metadata~=c-p-sm]) {
-    --callout-content-padding: 6px !important;
-  }
+.mpdf-doc .callout:is([data-callout-metadata~=content-padding-small],
+[data-callout-metadata~=c-p-sm]) {
+  --callout-content-padding: 6px !important;
+}
 
-  .mpdf-doc .callout:is([data-callout-metadata~=content-padding-medium],
-  [data-callout-metadata~=c-p-med]) {
-    --callout-content-padding: 12px !important;
-  }
-  .mpdf-doc .callout:is([data-callout-metadata~=content-padding-large],
-  [data-callout-metadata~=c-p-lg]) {
-    --callout-content-padding: 24px !important;
-  }
+.mpdf-doc .callout:is([data-callout-metadata~=content-padding-medium],
+[data-callout-metadata~=c-p-med]) {
+  --callout-content-padding: 12px !important;
+}
+.mpdf-doc .callout:is([data-callout-metadata~=content-padding-large],
+[data-callout-metadata~=c-p-lg]) {
+  --callout-content-padding: 24px !important;
+}
 
-  .mpdf-doc .callout:is([data-callout-metadata~=txt-l],
-  [data-callout-metadata~=text-left]) > .callout-content > * {
-    text-align: left !important;
-  }
+.mpdf-doc .callout:is([data-callout-metadata~=txt-l],
+[data-callout-metadata~=text-left]) > .callout-content > * {
+  text-align: left !important;
+}
 
-  .mpdf-doc .callout:is([data-callout-metadata~=txt-r],
-  [data-callout-metadata~=text-right]) > .callout-content {
-    text-align: right !important;
-  }
+.mpdf-doc .callout:is([data-callout-metadata~=txt-r],
+[data-callout-metadata~=text-right]) > .callout-content {
+  text-align: right !important;
+}
 
-  .mpdf-doc .callout:is([data-callout-metadata~=txt-c],
-  [data-callout-metadata~=text-center]) > .callout-content {
-    text-align: center !important;
-  }
+.mpdf-doc .callout:is([data-callout-metadata~=txt-c],
+[data-callout-metadata~=text-center]) > .callout-content {
+  text-align: center !important;
+}
 
-  .mpdf-doc .callout:is([data-callout-metadata~=ttl-c],
-  [data-callout-metadata~=title-center]) .callout-title {
-    justify-content: center !important;
-  }
-  .mpdf-doc .callout:is([data-callout-metadata~=ttl-c],
-  [data-callout-metadata~=title-center]) .callout-title-inner {
+.mpdf-doc .callout:is([data-callout-metadata~=ttl-c],
+[data-callout-metadata~=title-center]) .callout-title {
+  justify-content: center !important;
+}
+.mpdf-doc .callout:is([data-callout-metadata~=ttl-c],
+[data-callout-metadata~=title-center]) .callout-title-inner {
+  display: block !important;
+  flex: unset !important;
+}
+
+.mpdf-doc .callout:is([data-callout-metadata~=text-small],
+[data-callout-metadata~=txt-s]) > .callout-content > * {
+  --font-text-size: var(--font-smallest);
+  --tag-size: var(--font-smallest);
+  --table-text-size: var(--font-smallest);
+  font-size: var(--font-text-size) !important;
+}
+
+/* Callout Positioning */
+.mpdf-doc .callout:is([data-callout-metadata~="p+r"], [data-callout-metadata~=left]) {
+  float: left !important;
+  margin: unset !important;
+  margin-right: 10px !important;
+}
+.mpdf-doc .callout:is([data-callout-metadata~="p+l"], [data-callout-metadata~=right]) {
+  float: right !important;
+  margin: unset !important;
+  margin-left: 10px !important;
+}
+.mpdf-doc .callout:is([data-callout-metadata~=ctr],
+  [data-callout-metadata~=center]) {
     display: block !important;
-    flex: unset !important;
+    margin: auto !important;
+    float: center !important;
   }
+/* Callout Partial Visibility Rules */
+.mpdf-doc .callout:is([data-callout-metadata~=no-t],
+[data-callout-metadata~=no-title]) > .callout-title {
+  display: none !important;
+}
 
-  .mpdf-doc .callout:is([data-callout-metadata~=text-small],
-  [data-callout-metadata~=txt-s]) > .callout-content > * {
-    --font-text-size: var(--font-smallest);
-    --tag-size: var(--font-smallest);
-    --table-text-size: var(--font-smallest);
-    font-size: var(--font-text-size) !important;
-  }
+.mpdf-doc .callout:is([data-callout-metadata~=s-t],
+[data-callout-metadata~=show-title]) > .callout-title {
+  display: flex !important;
+}
+.mpdf-doc .callout:is([data-callout-metadata~=s-t],
+[data-callout-metadata~=show-title]) > .callout-content > p {
+  margin-top: 0 !important;
+}
 
-  /* Callout Positioning */
-  .mpdf-doc .callout:is([data-callout-metadata~="p+r"], [data-callout-metadata~=left]) {
-    float: left !important;
-    margin: unset !important;
-    margin-right: 10px !important;
-  }
-  .mpdf-doc .callout:is([data-callout-metadata~="p+l"], [data-callout-metadata~=right]) {
-    float: right !important;
-    margin: unset !important;
-    margin-left: 10px !important;
-  }
-  .mpdf-doc .callout:is([data-callout-metadata~=ctr],
-    [data-callout-metadata~=center]) {
-      display: block !important;
-      margin: auto !important;
-      float: center !important;
-    }
-  /* Callout Partial Visibility Rules */
-  .mpdf-doc .callout:is([data-callout-metadata~=no-t],
-  [data-callout-metadata~=no-title]) > .callout-title {
-    display: none !important;
-  }
+.mpdf-doc .callout:is([data-callout-metadata~=subtitle],
+[data-callout-metadata~=subt]) .callout-title {
+  align-content: center !important;
+  align-items: center !important;
+}
+.mpdf-doc .callout:is([data-callout-metadata~=subtitle],
+[data-callout-metadata~=subt]) .callout-title em {
+  display: block !important;
+  font-style: normal !important;
+  font-size: var(--font-small) !important;
+  line-height: 12px !important;
+  font-weight: normal !important;
+}
+.mpdf-doc .callout:is([data-callout-metadata~=subtitle],
+[data-callout-metadata~=subt]) .callout-title em em {
+  font-style: italic !important;
+  display: inline-block !important;
+}
+.mpdf-doc .callout:is([data-callout-metadata~=no-i],
+[data-callout-metadata~=no-icon]) > .callout-title > .callout-icon {
+  width: 0 !important;
+  height: 0 !important;
+  --icon-size: 0;
+}
 
-  .mpdf-doc .callout:is([data-callout-metadata~=s-t],
-  [data-callout-metadata~=show-title]) > .callout-title {
-    display: flex !important;
-  }
-  .mpdf-doc .callout:is([data-callout-metadata~=s-t],
-  [data-callout-metadata~=show-title]) > .callout-content > p {
-    margin-top: 0 !important;
-  }
-
-  .mpdf-doc .callout:is([data-callout-metadata~=subtitle],
-  [data-callout-metadata~=subt]) .callout-title {
-    align-content: center !important;
-    align-items: center !important;
-  }
-  .mpdf-doc .callout:is([data-callout-metadata~=subtitle],
-  [data-callout-metadata~=subt]) .callout-title em {
-    display: block !important;
-    font-style: normal !important;
-    font-size: var(--font-small) !important;
-    line-height: 12px !important;
-    font-weight: normal !important;
-  }
-  .mpdf-doc .callout:is([data-callout-metadata~=subtitle],
-  [data-callout-metadata~=subt]) .callout-title em em {
-    font-style: italic !important;
-    display: inline-block !important;
-  }
-  .mpdf-doc .callout:is([data-callout-metadata~=no-i],
-  [data-callout-metadata~=no-icon]) > .callout-title > .callout-icon {
-    width: 0 !important;
-    height: 0 !important;
-    --icon-size: 0;
-  }
-  
-  /* Callout Color Customization */
-  .mpdf-doc .callout {
-    --callout-color-opacity: 10%;
-    --callout-title-opacity: 25%;
-    --callout-blue: #528bd4;
-    --callout-green: #56b375;
-    --callout-orange: #e6813f;
-    --callout-red: #c14343;
-    --callout-purple: #9961da;
-    --callout-gray: #a6bdc5;
-    --callout-yellow: #d0b530;
-    --callout-pink: #e36ba7;
-    --callout-brown: #a16a49;
-    --callout-black: #000000;
-    --callout-white: #FFFFFF;
-    --callout-plain: var(--mpdf-pageBackground);
-  }
+/* Callout Color Customization */
+.mpdf-doc .callout {
+  --callout-color-opacity: 10%;
+  --callout-title-opacity: 25%;
+  --callout-blue: #528bd4;
+  --callout-green: #56b375;
+  --callout-orange: #e6813f;
+  --callout-red: #c14343;
+  --callout-purple: #9961da;
+  --callout-gray: #a6bdc5;
+  --callout-yellow: #d0b530;
+  --callout-pink: #e36ba7;
+  --callout-brown: #a16a49;
+  --callout-black: #000000;
+  --callout-white: #FFFFFF;
+  --callout-plain: var(--mpdf-pageBackground);
+}
 """
 FORMAT = """\
-  /** {color} */
-  /*** Color Selection */
-  .mpdf-doc .callout:is([data-callout-metadata~=color-{color}],
-  [data-callout-metadata~=c-{color}]) {{
-    --callout-title: var(--callout-{color});
-  }}
-  /*** "color" or "c" changes for .callout-title */
-  .mpdf-doc .callout:is([data-callout-metadata~=color-{color}],
-  [data-callout-metadata~=c-{color}],
-  [data-callout-metadata~=bg-c-{color}],
-  [data-callout-metadata~=background-color-{color}]) > .callout-title {{
-    --callout-title: var(--callout-blue);
-    --callout-color: var(--callout-title);
-    color: {color} !important;
-    background: color-mix(in oklch, var(--callout-{color}) var(--callout-title-opacity), var(--mpdf-pageBackground)) !important;
-  }}
-  /*** "background" or "bg" changes for .callout-content */
-  .mpdf-doc .callout:is([data-callout-metadata~=background-{color}],
-  [data-callout-metadata~=bg-{color}],
-  [data-callout-metadata~=background-color-{color}],
-  [data-callout-metadata~=bg-c-{color}]) > .callout-content {{
-    --callout-background: color-mix(in oklch, var(--callout-{color}) var(--callout-color-opacity), var(--mpdf-pageBackground));
-    background-color: var(--callout-background) !important;
-    background: var(--callout-background) !important;
-  }}
-  /*** Callout color variable setting */
-  .mpdf-doc .callout:is([data-callout-metadata~=background-color-{color}],
-  [data-callout-metadata~=bg-c-{color}]) {{
-    --callout-color: var(--callout-{color});
-  }}
+/** {color} */
+/*** Color Selection */
+.mpdf-doc .callout:is([data-callout-metadata~=color-{color}],
+[data-callout-metadata~=c-{color}]) {{
+  --callout-title: var(--callout-{color});
+}}
+/*** "color" or "c" changes for .callout-title */
+.mpdf-doc .callout:is([data-callout-metadata~=color-{color}],
+[data-callout-metadata~=c-{color}],
+[data-callout-metadata~=bg-c-{color}],
+[data-callout-metadata~=background-color-{color}]) > .callout-title {{
+  --callout-title: var(--callout-blue);
+  --callout-color: var(--callout-title);
+  color: {color} !important;
+  background: color-mix(in oklch, var(--callout-{color}) var(--callout-title-opacity), var(--mpdf-pageBackground)) !important;
+}}
+/*** "background" or "bg" changes for .callout-content */
+.mpdf-doc .callout:is([data-callout-metadata~=background-{color}],
+[data-callout-metadata~=bg-{color}],
+[data-callout-metadata~=background-color-{color}],
+[data-callout-metadata~=bg-c-{color}]) > .callout-content {{
+  --callout-background: color-mix(in oklch, var(--callout-{color}) var(--callout-color-opacity), var(--mpdf-pageBackground));
+  background-color: var(--callout-background) !important;
+  background: var(--callout-background) !important;
+}}
+/*** Callout color variable setting */
+.mpdf-doc .callout:is([data-callout-metadata~=background-color-{color}],
+[data-callout-metadata~=bg-c-{color}]) {{
+  --callout-color: var(--callout-{color});
+}}
 
 """
 
 FOOT = """\
-  /** black */
-  /*** Color Selection */
-  .mpdf-doc .callout:is([data-callout-metadata~=color-black],
-  [data-callout-metadata~=c-black]) {
-    --callout-title: var(--callout-black);
-  }
-  /*** "color" or "c" changes for .callout-title */
-  .mpdf-doc .callout:is([data-callout-metadata~=color-black],
-  [data-callout-metadata~=c-black],
-  [data-callout-metadata~=bg-c-black],
-  [data-callout-metadata~=background-color-black]) > .callout-title {
-    --callout-title: var(--callout-black);
-    --callout-color: var(--callout-title);
-    color: black !important;
-    background: color-mix(in oklch, var(--callout-black) var(--callout-title-opacity), white) !important;
-  }
-  /*** "background" or "bg" changes for .callout-content */
-  .mpdf-doc .callout:is([data-callout-metadata~=background-black],
-  [data-callout-metadata~=bg-black],
-  [data-callout-metadata~=background-color-black],
-  [data-callout-metadata~=bg-c-black]) > .callout-content {
-    --callout-background: color-mix(in oklch, var(--callout-black) var(--callout-color-opacity), white);
-    background-color: var(--callout-background) !important;
-    background: var(--callout-background) !important;
-  }
-  /*** Callout color variable setting */
-  .mpdf-doc .callout:is([data-callout-metadata~=background-color-black],
-  [data-callout-metadata~=bg-c-black]) {
-    --callout-color: var(--callout-black);
-  }
-  /** white */
-  /*** Color Selection */
-  .mpdf-doc .callout:is([data-callout-metadata~=color-white],
-  [data-callout-metadata~=c-white]) {
-    --callout-title: var(--callout-white);
-  }
-  /*** "color" or "c" changes for .callout-title */
-  .mpdf-doc .callout:is([data-callout-metadata~=color-white],
-  [data-callout-metadata~=c-white],
-  [data-callout-metadata~=bg-c-white],
-  [data-callout-metadata~=background-color-white]) > .callout-title {
-    --callout-title: var(--callout-white);
-    --callout-color: var(--callout-title);
-    color: white !important;
-    background: color-mix(in oklch, var(--callout-white) var(--callout-title-opacity), black) !important;
-  }
-  /*** "background" or "bg" changes for .callout-content */
-  .mpdf-doc .callout:is([data-callout-metadata~=background-white],
-  [data-callout-metadata~=bg-white],
-  [data-callout-metadata~=background-color-white],
-  [data-callout-metadata~=bg-c-white]) > .callout-content {
-    --callout-background: color-mix(in oklch, var(--callout-white) var(--callout-color-opacity), black);
-    background-color: var(--callout-background) !important;
-    background: var(--callout-background) !important;
-  }
-  /*** Callout color variable setting */
-  .mpdf-doc .callout:is([data-callout-metadata~=background-color-white],
-  [data-callout-metadata~=bg-c-white]) {
-    --callout-color: var(--callout-white);
-  }
-  /** plain */
-  /*** Color Selection */
-  .mpdf-doc .callout:is([data-callout-metadata~=color-plain],
-  [data-callout-metadata~=c-plain]) {
-    --callout-title: var(--callout-plain);
-  }
-  /*** "color" or "c" changes for .callout-title */
-  .mpdf-doc .callout:is([data-callout-metadata~=color-plain],
-  [data-callout-metadata~=c-plain],
-  [data-callout-metadata~=bg-c-plain],
-  [data-callout-metadata~=background-color-plain]) > .callout-title {
-    --callout-title: var(--callout-plain);
-    --callout-color: var(--callout-title);
-    color: plain !important;
-    background: color-mix(in oklch, var(--callout-plain) var(--callout-title-opacity), var(--mpdf-pageBackground)) !important;
-  }
-  /*** "background" or "bg" changes for .callout-content */
-  .mpdf-doc .callout:is([data-callout-metadata~=background-plain],
-  [data-callout-metadata~=bg-plain],
-  [data-callout-metadata~=background-color-plain],
-  [data-callout-metadata~=bg-c-plain]) > .callout-content {
-    --callout-background: color-mix(in oklch, var(--callout-plain) var(--callout-color-opacity), var(--mpdf-pageBackground)) !important;
-    background-color: var(--callout-background) !important;
-    background: var(--callout-background) !important;
-  }
-  /*** Callout color variable setting */
-  .mpdf-doc .callout:is([data-callout-metadata~=background-color-plain],
-  [data-callout-metadata~=bg-c-plain]) {
-    --callout-color: var(--callout-plain);
+/** black */
+/*** Color Selection */
+.mpdf-doc .callout:is([data-callout-metadata~=color-black],
+[data-callout-metadata~=c-black]) {
+  --callout-title: var(--callout-black);
+}
+/*** "color" or "c" changes for .callout-title */
+.mpdf-doc .callout:is([data-callout-metadata~=color-black],
+[data-callout-metadata~=c-black],
+[data-callout-metadata~=bg-c-black],
+[data-callout-metadata~=background-color-black]) > .callout-title {
+  --callout-title: var(--callout-black);
+  --callout-color: var(--callout-title);
+  color: black !important;
+  background: color-mix(in oklch, var(--callout-black) var(--callout-title-opacity), white) !important;
+}
+/*** "background" or "bg" changes for .callout-content */
+.mpdf-doc .callout:is([data-callout-metadata~=background-black],
+[data-callout-metadata~=bg-black],
+[data-callout-metadata~=background-color-black],
+[data-callout-metadata~=bg-c-black]) > .callout-content {
+  --callout-background: color-mix(in oklch, var(--callout-black) var(--callout-color-opacity), white);
+  background-color: var(--callout-background) !important;
+  background: var(--callout-background) !important;
+}
+/*** Callout color variable setting */
+.mpdf-doc .callout:is([data-callout-metadata~=background-color-black],
+[data-callout-metadata~=bg-c-black]) {
+  --callout-color: var(--callout-black);
+}
+/** white */
+/*** Color Selection */
+.mpdf-doc .callout:is([data-callout-metadata~=color-white],
+[data-callout-metadata~=c-white]) {
+  --callout-title: var(--callout-white);
+}
+/*** "color" or "c" changes for .callout-title */
+.mpdf-doc .callout:is([data-callout-metadata~=color-white],
+[data-callout-metadata~=c-white],
+[data-callout-metadata~=bg-c-white],
+[data-callout-metadata~=background-color-white]) > .callout-title {
+  --callout-title: var(--callout-white);
+  --callout-color: var(--callout-title);
+  color: white !important;
+  background: color-mix(in oklch, var(--callout-white) var(--callout-title-opacity), black) !important;
+}
+/*** "background" or "bg" changes for .callout-content */
+.mpdf-doc .callout:is([data-callout-metadata~=background-white],
+[data-callout-metadata~=bg-white],
+[data-callout-metadata~=background-color-white],
+[data-callout-metadata~=bg-c-white]) > .callout-content {
+  --callout-background: color-mix(in oklch, var(--callout-white) var(--callout-color-opacity), black);
+  background-color: var(--callout-background) !important;
+  background: var(--callout-background) !important;
+}
+/*** Callout color variable setting */
+.mpdf-doc .callout:is([data-callout-metadata~=background-color-white],
+[data-callout-metadata~=bg-c-white]) {
+  --callout-color: var(--callout-white);
+}
+/** plain */
+/*** Color Selection */
+.mpdf-doc .callout:is([data-callout-metadata~=color-plain],
+[data-callout-metadata~=c-plain]) {
+  --callout-title: var(--callout-plain);
+}
+/*** "color" or "c" changes for .callout-title */
+.mpdf-doc .callout:is([data-callout-metadata~=color-plain],
+[data-callout-metadata~=c-plain],
+[data-callout-metadata~=bg-c-plain],
+[data-callout-metadata~=background-color-plain]) > .callout-title {
+  --callout-title: var(--callout-plain);
+  --callout-color: var(--callout-title);
+  color: plain !important;
+  background: color-mix(in oklch, var(--callout-plain) var(--callout-title-opacity), var(--mpdf-pageBackground)) !important;
+}
+/*** "background" or "bg" changes for .callout-content */
+.mpdf-doc .callout:is([data-callout-metadata~=background-plain],
+[data-callout-metadata~=bg-plain],
+[data-callout-metadata~=background-color-plain],
+[data-callout-metadata~=bg-c-plain]) > .callout-content {
+  --callout-background: color-mix(in oklch, var(--callout-plain) var(--callout-color-opacity), var(--mpdf-pageBackground)) !important;
+  background-color: var(--callout-background) !important;
+  background: var(--callout-background) !important;
+}
+/*** Callout color variable setting */
+.mpdf-doc .callout:is([data-callout-metadata~=background-color-plain],
+[data-callout-metadata~=bg-c-plain]) {
+  --callout-color: var(--callout-plain);
+}
+
+/*** "color" or "c" changes for .callout-icon svg */
+.mpdf-doc .callout:is([data-callout-metadata*=color-],
+[data-callout-metadata*=c-],
+[data-callout-metadata*=bg-c-],
+[data-callout-metadata*=background-color-]) .callout-icon svg {
+  stroke: var(--callout-title) !important;
   }
 
-  /*** "color" or "c" changes for .callout-icon svg */
-  .mpdf-doc .callout:is([data-callout-metadata*=color-],
-  [data-callout-metadata*=c-],
-  [data-callout-metadata*=bg-c-],
-  [data-callout-metadata*=background-color-]) .callout-icon svg {
-    stroke: var(--callout-title) !important;
-    }
+/* Callout for Captions */
+.mpdf-doc .callout:is([data-callout~=caption]) > .callout-title {
+  display: none !important;
+}
+.mpdf-doc .callout:is([data-callout~=caption]) {
+  border-inline-start: none !important;
+}
 
-  /* Callout for Captions */
-  .mpdf-doc .callout:is([data-callout~=caption]) > .callout-title {
-    display: none !important;
-  }
-  .mpdf-doc .callout:is([data-callout~=caption]) {
-    border-inline-start: none !important;
-  }
-  
-  .mpdf-doc .callout:is([data-callout~=caption]) {
-    background: var(--mpdf-pageBackground) !important;
-    text-align: center !important;
-    border: 2px var(--mpdf-accentColor) solid !important;
-    padding: 0 !important;
-    box-shadow: 0 0 0 10px var(--mpdf-pageBackground) !important;
-  }
-  .mpdf-doc .callout:is([data-callout~=caption]) > callout-content {
-    border-radius: 10px !important;
-    overflow: hidden !important;
-    border: 2px var(--mpdf-accentColor) solid !important;
-  }
-  .mpdf-doc .callout[data-callout~=caption] > .callout-content > p :is(.image-embed, img) + br {
-    display: none !important;
-  }
-  .mpdf-doc .callout[data-callout~=caption] > .callout-content img {
-    display: block !important;
-    margin: auto !important;
-    border-radius: 10px !important;
-  }
-  .mpdf-doc .callout[data-callout~=caption] p {
-    margin-block-start: 0 !important;
-    margin-block-end: 0 !important;
-    color: var(--mpdf-accentColor) !important;
-  }
+.mpdf-doc .callout:is([data-callout~=caption]) {
+  background: var(--mpdf-pageBackground) !important;
+  text-align: center !important;
+  border: 2px var(--mpdf-accentColor) solid !important;
+  padding: 0 !important;
+  box-shadow: 0 0 0 10px var(--mpdf-pageBackground) !important;
+}
+.mpdf-doc .callout:is([data-callout~=caption]) > callout-content {
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  border: 2px var(--mpdf-accentColor) solid !important;
+}
+.mpdf-doc .callout[data-callout~=caption] > .callout-content > p :is(.image-embed, img) + br {
+  display: none !important;
+}
+.mpdf-doc .callout[data-callout~=caption] > .callout-content img {
+  display: block !important;
+  margin: auto !important;
+  border-radius: 10px !important;
+}
+.mpdf-doc .callout[data-callout~=caption] p {
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
+  color: var(--mpdf-accentColor) !important;
+}
 
-  .mpdf-doc .callout[data-callout~=caption]:is([data-callout-metadata~=sban], [data-callout-metadata~=banner]) .image-embed img {
-    width: 100% !important;
-  }
+.mpdf-doc .callout[data-callout~=caption]:is([data-callout-metadata~=sban], [data-callout-metadata~=banner]) .image-embed img {
+  width: 100% !important;
+}
 
 """
 

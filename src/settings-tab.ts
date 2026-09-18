@@ -28,15 +28,14 @@ const NUMERIC_DROPDOWN_KEYS = new Set([
 
 export class PDFExportSettingTab extends PluginSettingTab {
   plugin: MarkdownPDFPlugin;
-  availableSnippets: Record<string, string>;
+  availableSnippets: string[];
 
   /** True when any setting changed while this tab is open; triggers a single render on hide(). */
   private dirty = false;
 
-  constructor(app: App, plugin: MarkdownPDFPlugin, availableSnippets:Record<string, string>) {
+  constructor(app: App, plugin: MarkdownPDFPlugin) {
     super(app, plugin);
     this.plugin = plugin;
-    this.availableSnippets = availableSnippets;
   }
 
   /** Called by Obsidian when the user leaves this tab. Fires one render if settings changed. */
@@ -322,31 +321,35 @@ export class PDFExportSettingTab extends PluginSettingTab {
         type: "list",
         heading: "Custom CSS",
         emptyState: "No CSS snippets found matching ^knotpdf-.*\.css",
-        items: Object.entries(this.availableSnippets).map( record => {
-          const bools = this.plugin.settings.customCSSFiles.map(p => p === record[0])
-          const contains = bools.contains(true);
-          const idx = !contains ? bools.length : bools.indexOf(true);
-          console.log(bools, contains, idx);
+        items: (this.plugin.app.customCss?.snippets ?? [])
+          .filter(snip => {
+            return RegExp("^knotpdf-.*$").test(snip);
+          })
+          .map( snip => {
+          const snippetPath = `.obsidian/snippets/${snip}.css`;
+          const keys = this.plugin.settings.customCSSFiles.map(record => record.key);
+          const contains = keys.contains(snippetPath);
+          const idx = !contains ? keys.length : keys.indexOf(snippetPath);
           if ( !contains ) {
-            this.plugin.settings.customCSSFiles[idx] = {key: record[0], enabled: contains};
+            this.plugin.settings.customCSSFiles.push({key: snippetPath, enabled: contains});
           }
+          const state = this.plugin.settings.customCSSFiles[idx].enabled;
           return {
-            name: record[0],
+            name: snippetPath,
             render: (setting) => {
               setting
-                .addToggle( (toggle) => toggle
-                  .setValue(this.plugin.settings.customCSSFiles[record[0]])
-                  .onChange( async (value) => {
-                    const cssFile = record[0];
-                    this.plugin.settings.customCSSFiles[idx] = { 
-                      key: record[0],
-                      enabled: value
-                    };
-                    await this.plugin.saveData(this.plugin.settings);
-                  })
-              )
-            }
+              .addToggle( (toggle) => toggle
+              .setValue(state)
+              .onChange( async (value) => {
+                this.plugin.settings.customCSSFiles[idx] = { 
+                  key: snippetPath,
+                  enabled: value
+                };
+                await this.plugin.saveData(this.plugin.settings);
+              })
+            )
           }
+        }
         }),
         onReorder: async (oldIndex, newIndex) => {
           const arr = this.plugin.settings.customCSSFiles;
@@ -355,9 +358,14 @@ export class PDFExportSettingTab extends PluginSettingTab {
           this.plugin.settings.customCSSFiles = arr;
           await this.plugin.saveData(this.plugin.settings);
                     
+        },
+        addItem: {
+          name: "Reload",
+          action: () => {
+            this.update();
+          }
         }
       }
     ];
-    
   }
 }
